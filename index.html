@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="/json_file.js"></script>
+    <script src="/game_files.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="/styles.css" rel="stylesheet" type="text/css" />
@@ -38,6 +38,14 @@
         }
 
         window.addEventListener('load', () => {
+            document.querySelectorAll('.file-link').forEach(el => {
+                el.addEventListener('click', () => {
+                    const game = el.attributes.getNamedItem('data-game')?.value;
+                    const ext = el.attributes.getNamedItem('data-ext')?.value;
+                    downloadGameFile(game, ext);
+                });
+            });
+
             document.querySelectorAll('.footage-link').forEach(el => {
                 el.addEventListener('click', () => {
                     const gameday = el.attributes.getNamedItem('data-day')?.value;
@@ -142,6 +150,7 @@
                             <th>Away Seed</th>
                             <th>Score</th>
                             <th>Footage</th>
+                            <th>Files</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -152,8 +161,12 @@
                             <td>Little City</td>
                             <td>76</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="0" data-time="1026">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="0" data-time="4104">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="0" data-time="1026">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="0" data-time="4104">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="0" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="0" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -163,8 +176,12 @@
                             <td>Memphis B-Sides</td>
                             <td>65</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="1" data-time="8702">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="1" data-time="12245">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="1" data-time="8702">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="1" data-time="12245">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="1" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="1" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -174,8 +191,12 @@
                             <td>Clarksville</td>
                             <td class="text-green-700">194</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="2" data-time="18860">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="2" data-time="22121">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="2" data-time="18860">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="2" data-time="22121">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="2" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="2" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -185,8 +206,12 @@
                             <td>B-Sides</td>
                             <td>108</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="3" data-time="26025">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="3" data-time="29248">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="3" data-time="26025">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="3" data-time="29248">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="3" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="3" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -196,8 +221,12 @@
                             <td>Clarksville</td>
                             <td>69</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="4" data-time="33297">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-game="4" data-time="36686">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="4" data-time="33297">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="1" data-game="4" data-time="36686">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="4" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="4" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -207,8 +236,12 @@
                             <td>Memphis B-Sides</td>
                             <td>122</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="5" data-time="910">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="5" data-time="4429">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="5" data-time="910">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="5" data-time="4429">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="5" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="5" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -218,8 +251,12 @@
                             <td>Music City Brawl Stars</td>
                             <td class="text-green-700">114</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="6" data-time="8384">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="6" data-time="11331">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="6" data-time="8384">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="6" data-time="11331">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="6" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="6" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -229,8 +266,12 @@
                             <td>Clarksville</td>
                             <td class="text-green-700">196</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="7" data-time="19121">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="7" data-time="22151">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="7" data-time="19121">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="7" data-time="22151">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="7" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="7" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -240,8 +281,12 @@
                             <td>Little City</td>
                             <td>81</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="8" data-time="26433">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="8" data-time="30271">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="8" data-time="26433">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="8" data-time="30271">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="8" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="8" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         <tr>
@@ -251,8 +296,12 @@
                             <td>Clarksville</td>
                             <td>92</td>
                             <td>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="9" data-time="34020">Period 1</div>
-                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-game="9" data-time="37507">Period 2</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="9" data-time="34020">Period 1</div>
+                                <div class="footage-link link text-nowrap" data-day="2" data-game="9" data-time="37507">Period 2</div>
+                            </td>
+                            <td>
+                                <div class="file-link link text-nowrap" data-game="9" data-ext="json">JSON</div>
+                                <div class="file-link link text-nowrap" data-game="9" data-ext="xlsx">Statsbook</div>
                             </td>
                         </tr>
                         </tbody>
