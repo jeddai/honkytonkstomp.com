@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <title>Honky Tonk Stomp</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        try {
+            let tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            let firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        } catch(e) {}
+
+        const days = {
+            '1': 'c8aABaLaVxI',
+            '2': 'oOcgwn2Ij-g'
+        }
+
+        let day = '1';
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '500',
+                width: '100%',
+                videoId: days[day],
+                playerVars: {
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+        }
+
+        window.addEventListener('load', () => {
+            console.log(document.querySelectorAll('.footage-link'));
+            document.querySelectorAll('.footage-link').forEach(el => {
+                console.log(el);
+                el.addEventListener('click', () => {
+                    const gameday = el.attributes.getNamedItem('data-day')?.value;
+                    const time = el.attributes.getNamedItem('data-time')?.value;
+                    console.log(gameday, time);
+                    player.playVideo();
+                    if (day === gameday) {
+                        player.seekTo(time);
+                    } else {
+                        day = gameday;
+                        player.loadVideoById({
+                            videoId: days[day],
+                            startSeconds: parseInt(time)
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a class="btn btn-ghost text-xl">Honky Tonk Stomp</a>
+        </div>
+        <div class="navbar-center">
+        </div>
+        <div class="navbar-end">
+        </div>
+    </div>
+
+    <div class="m-5">
+        <h1 class="md:text-2xl lg:text-3xl xl:text-4xl font-bold">2026</h1>
+        <div class="flex flex-col md:flex-row w-full">
+            <div class="basis-1/3 m-5">
+                <h2 class="md:text-xl lg:text-2xl xl:text-3xl font-bold">Standings</h2>
+                <div class="overflow-x-auto">
+                    <table class="table table-zebra">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team</th>
+                            <th>W-L</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Music City Brawl Stars</td>
+                            <td>4-0</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Hard Knox</td>
+                            <td>3-1</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Clarksville</td>
+                            <td>2-2</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Little City</td>
+                            <td>1-3</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>B-Sides</td>
+                            <td>0-4</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="basis-2/3 m-5">
+                <h2 class="md:text-xl lg:text-2xl xl:text-3xl font-bold">Game Results</h2>
+                <div class="overflow-x-auto">
+                    <table class="table table-zebra">
+                        <thead>
+                        <tr>
+                            <th>Game</th>
+                            <th>Home Seed</th>
+                            <th>Score</th>
+                            <th>Away Seed</th>
+                            <th>Score</th>
+                            <th>Footage</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Music City Brawl Stars</td>
+                            <td class="text-green-700">178</td>
+                            <td>Little City</td>
+                            <td>76</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="1204">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="4104">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Hard Knox</td>
+                            <td class="text-green-700">280</td>
+                            <td>Memphis B-Sides</td>
+                            <td>65</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="8702">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="12245">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Little City</td>
+                            <td>124</td>
+                            <td>Clarksville</td>
+                            <td class="text-green-700">194</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="18860">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="22121">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Music City Brawl Stars</td>
+                            <td class="text-green-700">170</td>
+                            <td>B-Sides</td>
+                            <td>108</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="26025">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="29248">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Hard Knox</td>
+                            <td class="text-green-700">176</td>
+                            <td>Clarksville</td>
+                            <td>69</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="33297">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="1" data-time="36686">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Little City</td>
+                            <td class="text-green-700">204</td>
+                            <td>Memphis B-Sides</td>
+                            <td>122</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="910">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="4429">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Hard Knox</td>
+                            <td>100</td>
+                            <td>Music City Brawl Stars</td>
+                            <td class="text-green-700">114</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="8384">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="11331">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>B-Sides</td>
+                            <td>112</td>
+                            <td>Clarksville</td>
+                            <td class="text-green-700">196</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="19121">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="22151">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Hard Knox</td>
+                            <td class="text-green-700">216</td>
+                            <td>Little City</td>
+                            <td>81</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="26433">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="30271">Period 2</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Music City Brawl Stars</td>
+                            <td class="text-green-700">172</td>
+                            <td>Clarksville</td>
+                            <td>92</td>
+                            <td>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="34020">Period 1</div>
+                                <div class="footage-link underline cursor-pointer text-nowrap" data-day="2" data-time="37507">Period 2</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="italic">Footage provided courtesy of <a class="link" href="https://www.derbydatenight.com/" target="_blank">Derby Date Night</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-row justify-center m-5">
+        <div class="lg:basis-2/3" id="player"></div>
+    </div>
+
+</body>
+</html>
