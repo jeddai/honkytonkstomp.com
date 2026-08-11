@@ -27,18 +27,6 @@
         let day = '1';
         let player;
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '500',
-                width: '100%',
-                videoId: days[day],
-                playerVars: {
-                    'playsinline': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
         }
 
         function onPlayerReady(event) {
@@ -49,13 +37,27 @@
         }
 
         window.addEventListener('load', () => {
-            console.log(document.querySelectorAll('.footage-link'));
             document.querySelectorAll('.footage-link').forEach(el => {
-                console.log(el);
                 el.addEventListener('click', () => {
                     const gameday = el.attributes.getNamedItem('data-day')?.value;
                     const time = el.attributes.getNamedItem('data-time')?.value;
-                    console.log(gameday, time);
+
+                    if (!player) {
+                        player = new YT.Player('player', {
+                            height: '500',
+                            width: '100%',
+                            videoId: days[gameday],
+                            playerVars: {
+                                'playsinline': 1,
+                                'start': parseInt(time)
+                            },
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': onPlayerStateChange
+                            }
+                        });
+                    }
+
                     player.playVideo();
                     if (day === gameday) {
                         player.seekTo(time);
@@ -84,6 +86,7 @@
 
     <div class="m-5">
         <h1 class="md:text-2xl lg:text-3xl xl:text-4xl font-bold">2026</h1>
+        <a href="https://hardknoxrollerderby.com/season-schedule/2026/honky-tonk-stomp" class="link italic" target="_blank">Host League Site</a>
         <div class="flex flex-col md:flex-row w-full">
             <div class="basis-1/3 m-5">
                 <h2 class="md:text-xl lg:text-2xl xl:text-3xl font-bold">Standings</h2>
@@ -261,6 +264,12 @@
 
     <div class="flex flex-row justify-center m-5">
         <div class="lg:basis-2/3" id="player"></div>
+    </div>
+
+    <div class="m-5">
+        <h1 class="md:text-2xl lg:text-3xl xl:text-4xl font-bold">2025</h1>
+        <a href="https://www.memphisrollerderby.com/schedule/honky-tonk-stomp-89-10" class="link italic" target="_blank">Host League Site</a>
+        <p class="italic">Data to be added soon.</p>
     </div>
 
 </body>
